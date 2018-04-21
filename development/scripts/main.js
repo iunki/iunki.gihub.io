@@ -46,7 +46,7 @@ $slide.mouseup(function (event) {
     refreshSlow();
 });
 
-$slide.mousedown(function (event) {
+$slide.on('mousedown vmousedown', (function (event) {
     $(this).css({
         cursor: 'grabbing',
         cursor: '-moz-grabbing',
@@ -55,9 +55,9 @@ $slide.mousedown(function (event) {
     isMouseDown = true;
     prevX = event.pageX;
     refreshSlow();
-});
+}));
 
-$slide.mousemove(function (event) {
+$slide.on('mousemove vmousemove', (function (event) {
     if (isMouseDown) {
         x = event.pageX;
         r = x - prevX;
@@ -71,4 +71,4 @@ $slide.mousemove(function (event) {
         $slide.css({backgroundPositionX: '+=' + r + 'px'});
         prevX = x;
     }
-});
+}));
