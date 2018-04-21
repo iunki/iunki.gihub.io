@@ -1,0 +1,25 @@
+@media screen and (max-width: 1920px) {
+  .visible-xs {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .visible-xs {
+    display: block;
+  }
+
+  .header {
+    padding: 25px 0;
+    .logo {
+      img {
+        height: 1.5em;
+      }
+    }
+    &__burger {
+      padding-top: 7px;
+    }
+  }
+
+}

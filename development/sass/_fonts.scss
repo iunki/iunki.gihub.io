@@ -1,0 +1,68 @@
+@font-face {
+  font-family: Pixel; /* Имя шрифта */
+  src: url(../fonts/basis33.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+  font-family: 'SF Pixelate';
+  src: url('../fonts/SFPixelate.woff2') format('woff2'),
+  url('../fonts/SFPixelate.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pixelate Shaded';
+  src: url('../fonts/SFPixelateShaded-Oblique.woff2') format('woff2'),
+  url('../fonts/SFPixelateShaded-Oblique.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pixelate';
+  src: url('../fonts/SFPixelate-Oblique.woff2') format('woff2'),
+  url('../fonts/SFPixelate-Oblique.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Pixel';
+  src: url('../fonts/Pixel.woff2') format('woff2'),
+  url('../fonts/Pixel.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pixelate';
+  src: url('../fonts/SFPixelate-BoldOblique.woff2') format('woff2'),
+  url('../fonts/SFPixelate-BoldOblique.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'SF Pixelate Shaded';
+  src: url('../fonts/SFPixelateShaded-Bold.woff2') format('woff2'),
+  url('../fonts/SFPixelateShaded-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pixelate';
+  src: url('../fonts/SFPixelate-Bold.woff2') format('woff2'),
+  url('../fonts/SFPixelate-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pixelate Shaded';
+  src: url('../fonts/SFPixelateShaded.woff2') format('woff2'),
+  url('../fonts/SFPixelateShaded.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
