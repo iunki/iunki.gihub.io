@@ -177,11 +177,12 @@ body {
 .lines {
   margin-top: 5%;
   &__item {
-    height: 3px;
+    height: 4px;
     transition: all .5s ease;
     position: relative;
   }
   #line1 {
+    height: 3px;
     background-color: $primary;
     transform: rotate(30deg) translateX(-100%);
     position: absolute;
