@@ -9,19 +9,27 @@
   .visible-xs {
     display: block;
   }
-
+  .slide{
+    height: calc(100vh - 154px);
+  }
   .header {
-    padding: 25px 0;
+    padding: 15px 0;
     .logo {
       img {
-        height: 1.5em;
+        height: 40px;
       }
     }
     &__burger {
-      padding-top: 7px;
+      padding-top: 10px;
+      width: 40px;
     }
   }
-  .nav{
+  .nav {
     display: none;
   }
+
+  .horse {
+    transform: scale(0.7) translateX(30%);
+  }
+
 }

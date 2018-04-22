@@ -1,20 +1,34 @@
-$(document).ready(function () {
+var isMobile = false,
+    mobileEvents = [];
+
+var $slide, $horse;
+
+
+var prevX,
+    isMouseDown = false,
+    x,
+    r,
+
+    slow = 15,
+    i = 0,
+
+    frame = [-540, -360, -185, 0],
+    k = 0;
+
+$(function () {
+    $slide = $('.slide');
+    $horse = $('.horse');
+
     animate();
+    isMobile = (window).innerWidth < 600;
+    if (isMobile) {
+        mobileEvents.mousedown = 'vmousedown';
+        mobileEvents.mousemove = 'vmousemove';
+        mobileEvents.mouseup = 'vmouseup';
+    }
+    bindEvents();
 });
 
-
-var prevX;
-var isMouseDown = false;
-var x;
-var r;
-
-var slow = 15;
-var i = 0;
-
-var frame = [-540, -360, -185, 0];
-var k = 0;
-var $slide = $('.slide');
-var $horse = $('.horse');
 
 function animate() {
     requestAnimationFrame(animate);
@@ -35,40 +49,44 @@ function refreshSlow() {
     slow = 15;
 }
 
-
-$slide.mouseup(function (event) {
-    isMouseDown = false;
-    $(this).css({
-        cursor: 'grab',
-        cursor: '-moz-grab',
-        cursor: '-webkit-grab'
+function bindEvents() {
+    $slide.on('mouseup ' + mobileEvents.mouseup, function (event) {
+        console.log(mobileEvents.mouseup);
+        isMouseDown = false;
+        $(this).css({
+            cursor: 'grab',
+            cursor: '-moz-grab',
+            cursor: '-webkit-grab'
+        });
+        refreshSlow();
     });
-    refreshSlow();
-});
 
-$slide.on('mousedown vmousedown', (function (event) {
-    $(this).css({
-        cursor: 'grabbing',
-        cursor: '-moz-grabbing',
-        cursor: '-webkit-grabbing'
-    });
-    isMouseDown = true;
-    prevX = event.pageX;
-    refreshSlow();
-}));
+    $slide.on('mousedown ' + mobileEvents.mousedown, (function (event) {
+        $(this).css({
+            cursor: 'grabbing',
+            cursor: '-moz-grabbing',
+            cursor: '-webkit-grabbing'
+        });
+        isMouseDown = true;
+        prevX = event.pageX;
+        refreshSlow();
+    }));
 
-$slide.on('mousemove vmousemove', (function (event) {
-    if (isMouseDown) {
-        x = event.pageX;
-        r = x - prevX;
+    $slide.on('mousemove ' + mobileEvents.mousemove, (function (event) {
+        if (isMouseDown) {
+            x = event.pageX;
+            r = x - prevX;
 
-        if (r > 0) { //ускоряемся
-            slow = 6;
-        } else {  // стоп
-            $horse.css('background-position', frame[0] + 'px 0');
-            k = 0;
+            if (r > 0) { //ускоряемся
+                slow = 6;
+            } else {  // стоп
+                $horse.css('background-position', frame[0] + 'px 0');
+                k = 0;
+            }
+            $slide.css({backgroundPositionX: '+=' + r + 'px'});
+            prevX = x;
         }
-        $slide.css({backgroundPositionX: '+=' + r + 'px'});
-        prevX = x;
-    }
-}));
+    }));
+}
+
+

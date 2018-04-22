@@ -16,7 +16,7 @@ var htmlFiles = ['*.html'];
 gulp.task('sass', function () {
     gulp.src(sassMain) // use sassMain file source
         .pipe(sass({
-            outputStyle: 'compressed' // Style of compiled CSS
+            outputStyle: 'compressed', // Style of compiled CSS
         })
             .on('error', gutil.log)) // Log descriptive errors to the terminal
         .pipe(gulp.dest('assets/css')) // The destination for the compiled file
