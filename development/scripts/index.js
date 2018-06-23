@@ -26,6 +26,11 @@ $(function () {
         mobileEvents.mousemove = 'vmousemove';
         mobileEvents.mouseup = 'vmouseup';
     }
+
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '../../../assets/audio/where-is-my-mind.mp3');
+    audioElement.play();
+
     bindEvents();
 });
 

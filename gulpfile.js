@@ -9,6 +9,7 @@ var gulp = require('gulp'),
 var sassMain = ['development/sass/main.scss'];
 var sassSources = ['development/sass/**/*.scss']; // Any .scss file in any sub-directory
 var jsSources = ['development/scripts/*.js']; // Any .js file in scripts directory
+var jsConcat = ['development/scripts/concat/*.js']; // Any .js file in scripts directory
 var htmlFiles = ['*.html'];
 
 
@@ -30,11 +31,19 @@ gulp.task('html', function () {
 
 // Task to concatenate and uglify js files
 gulp.task('concat', function () {
-    gulp.src(jsSources) // use jsSources
+    gulp.src(jsConcat) // use jsSources
         .pipe(concat('script.js')) // Concat to a file named 'script.js'
         .pipe(uglify()) // Uglify concatenated file
+        .pipe(gulp.dest('assets/js')) // The destination for the concatenated and uglified file
+        .pipe(connect.reload());
+});
+
+// Task to uglify js files
+gulp.task('uglify', function () {
+    gulp.src(jsSources) // use jsSources
+        .pipe(uglify()) // Uglify concatenated file
         .pipe(gulp.dest('assets/js'))
-        .pipe(connect.reload()); // The destination for the concatenated and uglified file
+        .pipe(connect.reload());
 });
 
 
@@ -42,7 +51,8 @@ gulp.task('concat', function () {
 gulp.task('watch', function () {
     gulp.watch(sassMain, ['sass']); // If any changes in 'sassMain', perform 'sass' task
     gulp.watch(sassSources, ['sass']);
-    gulp.watch(jsSources, ['concat']);
+    gulp.watch(jsSources, ['uglify']);
+    gulp.watch(jsConcat, ['concat']);
     gulp.watch(htmlFiles, ['html'])
 });
 

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document 2</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+
+    <!--<script src="script2.js"></script>-->
+</head>
+<body>
+<div class="spacer s2" style="padding-top: 1000px;"></div>
+<div id="trigger1" class="spacer s0"></div>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800" height="300">
+    <path id="word"
+          style="stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1009.23px; stroke-dashoffset: 1009.23px;"
+          fill="none" stroke="#000000" stroke-width="5" d="M15.937 16.784c4.671,35.234 15.185,73.684 16.771,111.636 0.874,20.929 4.56,34.539 4.56,61.245 0,9.205 5.237,96.517 -22.804,77.534 -23.952,-16.216 -9.887,-153.481 18.556,-184.334 43.025,-46.671 77.245,59.524 20.667,59.524 -0.164,0.399 53.818,6.718 53.818,-78.68 0,-4.688 -5.33,92.689 34.583,40.292 16.204,-21.271 9.2,-62.926 9.2,-44.54 0,33.403 12.227,119.918 -1.146,143.678 -32.882,58.419 -60.198,25.541 -37.243,-23.559 7.693,-16.455 80.033,-112.48 100.416,-100.208 24.86,14.969 -3.982,-2.676 -12.015,0.6 -32.374,13.204 7.285,71.656 31.848,34.896 8.235,-12.325 -10.272,-7.483 8.444,9.357 9.007,8.104 31.013,-3.143 31.013,-30.336 0,-42.171 -24.568,-24.866 -23.716,-11.468 0.552,8.674 1.548,22.056 18.009,16.941 9.415,-2.926 2.712,-48.464 6.541,-16.419 2.215,18.528 17.502,38.466 37.125,20.496"></path>
+    <path id="dot"
+          style="stroke-linecap: round; stroke-linejoin: round;"
+          fill="none" stroke="#000000" stroke-width="5"
+          d="M380.8 77.899c-5.517,33.541 39.499,18.124 37.672,-36.915 -1.168,-35.224 -7.203,45.423 11.259,40.056 36.258,-10.54 14.405,-84.036 65.206,-58.821 7.979,3.96 -0.258,-3.582 -9.799,-4.717 -34.324,-4.084 -32.501,42.793 -8.209,42.793 34.651,0 36.954,-36.486 17.331,-36.486 9.216,-1.58 2.927,13.771 31.691,-12.171 21.639,-19.516 54.362,49.413 2.137,46.911 -18.516,-0.887 24.317,1.888 26.374,-10.112 2.552,-14.878 5.477,-14.155 4.561,-35.574 -0.711,-16.636 53.906,-8.195 14.595,-10.034 -16.169,-0.756 -39.011,45.454 5.316,39.302 12.853,-1.785 21.413,-28.928 26.257,-28.995"></path>
+</svg>
+<div class="spacer s2" style="padding-bottom: 500px;"></div>
+<script>
+  function pathPrepare ($el) {
+    var lineLength = $el[0].getTotalLength()
+    $el.css('stroke-dasharray', lineLength)
+    $el.css('stroke-dashoffset', lineLength)
+  }
+
+  var $word = $('path#word')
+  var $dot = $('path#dot')
+
+  // prepare SVG
+  pathPrepare($word)
+  pathPrepare($dot)
+
+  // init controller
+  var controller = new ScrollMagic.Controller()
+
+  // build tween
+  var tween = new TimelineMax().add(TweenMax.to($word, 0.5, {strokeDashoffset: 0, ease: Linear.easeNone})) // draw word for 0.9
+  .add(TweenMax.to($dot, 0.5, {strokeDashoffset: 0, ease: Linear.easeNone}))  // draw dot for 0.1
+    .add(TweenMax.to('path', 1, {stroke: '#33629c', ease: Linear.easeNone}), 0)			// change color during the whole thing
+
+  // build scene
+  var scene = new ScrollMagic.Scene({triggerElement: '#trigger1', duration: 300, tweenChanges: true}).setTween(tween)
+    // .addIndicators() // add indicators (requires plugin)
+    .addTo(controller)
+</script>
+</body>
+</html>
