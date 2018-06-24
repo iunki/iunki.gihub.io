@@ -29,6 +29,7 @@ $(function () {
 
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '../../../assets/audio/where-is-my-mind.mp3');
+    audioElement.volume = 0.1;
     audioElement.play();
 
     bindEvents();

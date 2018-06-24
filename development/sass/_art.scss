@@ -1,0 +1,74 @@
+@import "variables";
+
+.art-wrapper {
+  text-align: right;
+}
+
+#art-svg {
+  display: inline-block;
+  width: 40%;
+  filter: url(#glow);
+  path {
+    fill: rgba(0, 0, 0, 0);
+    stroke: $primary;
+    stroke-width: 30;
+    stroke-miterlimit: 22.9256;
+  }
+}
+
+// Animation Classes
+.fade {
+  animation: fade 3s infinite;
+}
+
+.random1 {
+  animation: random 8s infinite;
+}
+
+.random2 {
+  animation: random 7s infinite;
+  animation-delay: 2s;
+}
+
+.random3 {
+  animation: random 6s infinite;
+  animation-delay: 4s;
+}
+
+.random4 {
+  animation: random 5s infinite;
+  animation-delay: 6s;
+}
+
+// Animations
+@keyframes fade {
+  0%, 100% {
+    opacity: 0.7;
+    filter: url(#glow);
+  }
+  50% {
+    opacity: 1;
+    filter: url(#glow);
+  }
+}
+
+@keyframes random {
+  0%, 9%, 11% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.2;
+  }
+}
+
+.carousel {
+  overflow: hidden;
+  height: 60vh;
+  margin-bottom: 20vh;
+  &__item {
+      display: inline-block;
+    height: 100%;
+    max-height: 100%;
+
+  }
+}

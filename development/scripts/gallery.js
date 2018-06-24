@@ -15,6 +15,7 @@ $(function () {
     animateOffer()
     pinStars()
     pinMountain()
+    animateArt()
 });
 
 
@@ -28,8 +29,8 @@ function animateOffer() {
 }
 
 function pinStars() {
-    var scene = new ScrollMagic.Scene({triggerElement: "#stars-trigger", duration: '2000', triggerHook: 'onLeave'})
-        .setPin(".stars-wrapper")
+    var scene = new ScrollMagic.Scene({triggerElement: "#stars-trigger", duration: '1000', triggerHook: 'onLeave'})
+        .setPin("#stars-pin")
         .addTo(controller);
 }
 
@@ -40,19 +41,36 @@ function pathPrepare ($el) {
 }
 
 function pinMountain() {
-    var $mountain = $('path#mountain_path')
+    var $el = $('#mountain_path')
 
-    pathPrepare($mountain)
+    pathPrepare($el)
 
     var tween = new TimelineMax()
-        .add(TweenMax.to($mountain, 2, {strokeDashoffset: 0, ease: Power1.easeIn})) // draw word for 0.9
-        .add(TweenMax.to('path', 2, {stroke: '#495c9a', ease: Power2.easeOut}), 0)			// change color during the whole thing
-        .add(TweenMax.to('path', 2, {fill: '#000000', ease: Power2.easeIn}), 0)			// change color during the whole thing
+        .add(TweenMax.to($el, 2, {strokeDashoffset: 0, ease: Power1.easeIn})) // draw word for 0.9
+        .add(TweenMax.to($el, 2, {stroke: '#8a90a2', ease: Power2.easeOut}), 0)			// change color during the whole thing
+        .add(TweenMax.to($el, 2, {fill: '#000000', ease: Power2.easeIn}), 0)			// change color during the whole thing
 
     // build scene
     var scene = new ScrollMagic.Scene({triggerElement: '#stars-trigger', duration: 800, triggerHook: 'onLeave', tweenChanges: true})
         .setTween(tween)
         .addTo(controller)
+}
 
+function animateArt() {
+    var $el = $('#word')
+    var $d1 = $('#dot1')
+    var $d2 = $('#dot2')
+    pathPrepare($el)
+    pathPrepare($d1)
+    pathPrepare($d2)
+
+    var tween = new TimelineMax()
+        .add(TweenMax.to($el, 2, {strokeDashoffset: 0, ease: Power1.easeIn}))
+        .add(TweenMax.to($d1, 0.1, {strokeDashoffset: 0, ease: Power1.easeIn}, 0))
+        .add(TweenMax.to($d2, 0.1, {strokeDashoffset: 0, ease: Power1.easeIn}))
+
+    var scene = new ScrollMagic.Scene({triggerElement: '#art-trigger', duration: 200, triggerHook: 'onEnter', tweenChanges: true})
+        .setTween(tween)
+        .addTo(controller)
 }
 
